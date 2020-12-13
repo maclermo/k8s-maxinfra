@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: devnetwork.site
-        image: git@github.com:maclermo/docker-devnetwork.site.git
+        image: k8s-maxinfra/devnetwork.site.yaml
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 ---
