@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: devnetwork.site
+  name: devnetwork-site
   labels:
-    app: devnetwork.site
+    app: devnetwork-site
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: devnetwork.site
+      app: devnetwork-site
   template:
     metadata:
       labels:
-        app: devnetwork.site
+        app: devnetwork-site
     spec:
       containers:
-      - name: devnetwork.site
-        image: k8s-maxinfra/devnetwork.site.yaml
+      - name: devnetwork-site
+        image: k8s-maxinfra/devnetwork-site
         imagePullPolicy: Always
         ports:
         - containerPort: 80
@@ -24,22 +24,22 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: devnetwork.site
+  name: devnetwork-site
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   type: NodePort
   selector:
-    app: devnetwork.site
+    app: devnetwork-site
   ports:
     - port: 14201
       targetPort: 80
-      name: devnetwork.site
+      name: devnetwork-site
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: devnetwork.site
+  name: devnetwork-site
   annotations:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/issuer: "letsencrypt-prod"
@@ -47,7 +47,7 @@ spec:
   tls:
   - hosts:
     - devnetwork.site
-    secretName: devnetwork.site
+    secretName: devnetwork-site
   rules:
   - host: devnetwork.site
     http:
@@ -56,6 +56,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: devnetwork.site
+            name: devnetwork-site
             port:
               number: 14201
