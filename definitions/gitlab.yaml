@@ -14,12 +14,28 @@ spec:
       labels:
         app: gitlab
     spec:
+      volumes:
+      - name: gitlab-config
+        persistentVolumeClaim:
+          claimName: nfs-pvc
+      - name: gitlab-logs
+        persistentVolumeClaim:
+          claimName: nfs-pvc
+      - name: gitlab-data
+        persistentVolumeClaim:
+          claimName: nfs-pvc
       containers:
       - name: gitlab
-        image: k8s-maxinfra/gitlab
-        imagePullPolicy: Never
+        image: gitlab/gitlab-ce
         ports:
         - containerPort: 80
+        volumeMounts:
+        - mountPath: "/etc/gitlab"
+          name: gitlab-config
+        - mountPath: "/var/log/gitlab"
+          name: gitlab-logs
+        - mountPath: "/var/opt/gitlab"
+          name: gitlab-data
 ---
 apiVersion: v1
 kind: Service
@@ -32,7 +48,7 @@ spec:
   selector:
     app: gitlab
   ports:
-    - port: 14201
+    - port: 14563
       targetPort: 80
       name: gitlab
 ---
@@ -58,4 +74,4 @@ spec:
           service:
             name: gitlab
             port:
-              number: 14201
+              number: 14563
