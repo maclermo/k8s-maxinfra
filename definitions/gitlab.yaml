@@ -14,16 +14,6 @@ spec:
       labels:
         app: gitlab
     spec:
-      volumes:
-      - name: gitlab-config
-        persistentVolumeClaim:
-          claimName: nfs-pvc
-      - name: gitlab-logs
-        persistentVolumeClaim:
-          claimName: nfs-pvc
-      - name: gitlab-data
-        persistentVolumeClaim:
-          claimName: nfs-pvc
       containers:
       - name: gitlab
         image: gitlab/gitlab-ce
@@ -36,6 +26,19 @@ spec:
           name: gitlab-logs
         - mountPath: /var/opt/gitlab
           name: gitlab-data
+      volumes:
+      - name: gitlab-config
+        persistentVolumeClaim:
+          claimName: nfs-pvc
+      - name: gitlab-logs
+        persistentVolumeClaim:
+          claimName: nfs-pvc
+      - name: gitlab-data
+        persistentVolumeClaim:
+          claimName: nfs-pvc
+      securityContext:
+        supplementalGroups: [0]
+        privileged: false
 ---
 apiVersion: v1
 kind: Service
