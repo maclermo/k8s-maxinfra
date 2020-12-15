@@ -83,13 +83,13 @@ spec:
       volumes:
       - name: gitlab-config
         persistentVolumeClaim:
-          claimName: gitlab-pvc
+          claimName: gitlab-config-pvc
       - name: gitlab-logs
         persistentVolumeClaim:
-          claimName: gitlab-pvc
+          claimName: gitlab-logs-pvc
       - name: gitlab-data
         persistentVolumeClaim:
-          claimName: gitlab-pvc
+          claimName: gitlab-data-pvc
       securityContext:
         supplementalGroups: [0]
 ---
