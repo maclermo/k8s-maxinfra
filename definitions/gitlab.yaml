@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nfs-pvc
+  name: gitlab-pvc
 spec:
   accessModes:
   - ReadWriteMany
@@ -9,7 +9,7 @@ spec:
     requests:
       storage: 10Gi
   storageClassName: nfs
-  volumeName: nfs-pv
+  volumeName: gitlab-pv
 status:
   accessModes:
   - ReadWriteMany
@@ -47,13 +47,13 @@ spec:
       volumes:
       - name: gitlab-config
         persistentVolumeClaim:
-          claimName: nfs-pvc
+          claimName: gitlab-pvc
       - name: gitlab-logs
         persistentVolumeClaim:
-          claimName: nfs-pvc
+          claimName: gitlab-pvc
       - name: gitlab-data
         persistentVolumeClaim:
-          claimName: nfs-pvc
+          claimName: gitlab-pvc
       securityContext:
         supplementalGroups: [0]
 ---
