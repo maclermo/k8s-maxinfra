@@ -11,7 +11,7 @@ spec:
   - hard
   - nfsvers=4.1
   nfs:
-    path: /mnt/nfs_share
+    path: /mnt/nfs_share/gitlab/logs
     server: 10.0.0.1
   storageClassName: nfs
   volumeMode: Filesystem
@@ -29,7 +29,7 @@ spec:
   - hard
   - nfsvers=4.1
   nfs:
-    path: /mnt/nfs_share
+    path: /mnt/nfs_share/gitlab/data
     server: 10.0.0.1
   storageClassName: nfs
   volumeMode: Filesystem
@@ -47,7 +47,7 @@ spec:
   - hard
   - nfsvers=4.1
   nfs:
-    path: /mnt/nfs_share
+    path: /mnt/nfs_share/gitlab/config
     server: 10.0.0.1
   storageClassName: nfs
   volumeMode: Filesystem
