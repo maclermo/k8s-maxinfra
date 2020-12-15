@@ -71,7 +71,7 @@ spec:
       containers:
       - name: gitlab
         image: gitlab/gitlab-ce
-        command: ["update-permissions"]
+        args: ["update-permissions"]
         ports:
         - containerPort: 80
         volumeMounts:
