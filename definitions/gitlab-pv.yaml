@@ -15,8 +15,6 @@ spec:
     server: 10.0.0.1
   storageClassName: nfs
   volumeMode: Filesystem
-  claimRef:
-    name: gitlab-logs-pvc
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -35,8 +33,6 @@ spec:
     server: 10.0.0.1
   storageClassName: nfs
   volumeMode: Filesystem
-  claimRef:
-    name: gitlab-data-pvc
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -55,5 +51,3 @@ spec:
     server: 10.0.0.1
   storageClassName: nfs
   volumeMode: Filesystem
-  claimRef:
-    name: gitlab-config-pvc
