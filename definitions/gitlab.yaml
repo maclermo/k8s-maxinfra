@@ -76,10 +76,13 @@ spec:
         volumeMounts:
         - mountPath: /etc/gitlab
           name: gitlab-config
+          readOnly: false
         - mountPath: /var/log/gitlab
           name: gitlab-logs
+          readOnly: false
         - mountPath: /var/opt/gitlab
           name: gitlab-data
+          readOnly: false
       volumes:
       - name: gitlab-config
         persistentVolumeClaim:
@@ -90,8 +93,6 @@ spec:
       - name: gitlab-data
         persistentVolumeClaim:
           claimName: gitlab-data-pvc
-      securityContext:
-        supplementalGroups: [0]
 ---
 apiVersion: v1
 kind: Service
